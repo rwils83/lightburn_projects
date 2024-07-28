@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightBurnProject AppVersion="1.5.06" FormatVersion="1" MaterialHeight="0" MirrorX="False" MirrorY="False">
+    <Thumbnail Source="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"/>
+    <VariableText>
+        <Start Value="0"/>
+        <End Value="999"/>
+        <Current Value="0"/>
+        <Increment Value="1"/>
+        <AutoAdvance Value="0"/>
+    </VariableText>
+    <UIPrefs>
+        <Optimize_ByLayer Value="0"/>
+        <Optimize_ByGroup Value="-1"/>
+        <Optimize_ByPriority Value="1"/>
+        <Optimize_WhichDirection Value="0"/>
+        <Optimize_InnerToOuter Value="1"/>
+        <Optimize_ByDirection Value="0"/>
+        <Optimize_ReduceTravel Value="1"/>
+        <Optimize_HideBacklash Value="0"/>
+        <Optimize_ReduceDirChanges Value="0"/>
+        <Optimize_ChooseCorners Value="0"/>
+        <Optimize_AllowReverse Value="1"/>
+        <Optimize_RemoveOverlaps Value="0"/>
+        <Optimize_OptimalEntryPoint Value="1"/>
+        <Optimize_OverlapDist Value="0.025"/>
+    </UIPrefs>
+    <CutSetting type="Cut">
+        <index Value="0"/>
+        <name Value="C00"/>
+        <minPower Value="0"/>
+        <maxPower Value="95"/>
+        <maxPower2 Value="20"/>
+        <speed Value="8"/>
+        <priority Value="0"/>
+    </CutSetting>
+    <Shape Type="Rect" CutIndex="0" W="85.724998" H="53.974995" Cr="0">
+        <XForm>1 0 0 1 64 47</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="85.724998" H="53.974995" Cr="0">
+        <XForm>1 0 0 1 64 108</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="85.724998" H="53.974995" Cr="0">
+        <XForm>1 0 0 1 64 168</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="85.724998" H="53.974995" Cr="0">
+        <XForm>1 0 0 1 64 228</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="85.724998" H="53.974995" Cr="0">
+        <XForm>1 0 0 1 174 46.999996</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="85.724998" H="53.974995" Cr="0">
+        <XForm>1 0 0 1 174 108</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="85.724998" H="53.974995" Cr="0">
+        <XForm>1 0 0 1 173 167</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="85.724998" H="53.974995" Cr="0">
+        <XForm>1 0 0 1 173 228</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="85.724998" H="53.974995" Cr="0">
+        <XForm>0.00061483728 -0.99999982 0.99999982 0.00061483728 253 194</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="85.724998" H="53.974995" Cr="0">
+        <XForm>0.0045859814 -0.99998945 0.99998945 0.0045859814 253 84</XForm>
+    </Shape>
+    <Notes ShowOnLoad="0" Notes=""/>
+</LightBurnProject>
