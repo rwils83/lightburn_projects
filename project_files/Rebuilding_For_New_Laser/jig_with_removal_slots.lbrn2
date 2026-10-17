@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightBurnProject AppVersion="1.7.08" DeviceName="GRBL" FormatVersion="1" MaterialHeight="0" MirrorX="False" MirrorY="False">
+    <Thumbnail Source="iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFh0lEQVR4nO3dsavVZQDG8ecejmCIKJKYg9KgZykhEzfbdG9oEYeWIHJ2CBcHHfwHEhyamxocgsRBgtarFoI0tDjIxeCikoZ64zRcvBClceDE73CezwdeuMN54Rku3+Hlcu7KdDqdBqg0GnoAMBwBgGICAMUEAIoJABQTACgmAFBMAKCYAEAxAYBiAgDFBACKCQAUEwAoJgBQTACgmABAMQGAYgIAxQQAigkAFBMAKCYAUEwAoJgAQDEBgGICAMUEAIoJABQTACgmAFBMAKCYAEAxAYBiAgDFBACKCQAUEwAoJgBQTACgmABAMQGAYgIAxQQAigkAFBMAKCYAUEwAoJgAQDEBgGICAMUEAIoJABQTACgmAFBMAKCYAEAxAYBiAgDFBACKCQAUEwAoJgBQTACgmABAMQGAYuNXP5w/n1y/nhw8OOSc5fPoUTIeJzduDL0E/mkrANNpcuBA8umnQ85ZPquryc2bs9+bTJLRKHnrrflvara2lnz2WXLx4tBLFsNWAN5+Ozl0KPn44yHnLJ9t25Lbt2e/t2tXcvZscvTo/Dc1u3AheeedoVcsjvF/f4QhbN+eHD6cfPDB0EuWy549yY4dQ69YHB4BoZgAQDEBgGICAMUEAIoJABQTACgmAFBMAKCYAEAxAYBiAgDFBACKCQAUEwAoJgBQTACgmABAMQGAYgIAxQQAigkAFBMAKCYAUEwAoJgAQDEBgGICAMUEAIoJABTz78HhNZ48Sc6cSU6cGHrJ/N26lXz5pQDAa/3xR3LjRvLee0Mvmb8ff0zu3xcAeK3t2zfP5ctDL5m/H35I9u3zBgDVBACKCQAUEwAoJgBQTACgmABAMQGAYgIAxQQAigkAFBMAKCYAUEwAoJgAQDEBgGICAMW2vhHowYPkp5+Sr74acs7yuXs3efhw6BXw77YCsH9/cu/e5mF+Hj9ODh2a/d7aWnL1avLdd/Pf1Gx1NXn33aFXLI6tAJw7t3lYDKdOJbt2bR7m59ix5MiRoVcsDl8KuqCuXBl6AQ08AkIxAYBiAgDFBACKCQAUEwAoJgBQbPz118kXXyQ7dgw9ZblMp8mzZ8mLF7Pd+/33ZGMj2bbt/9nVamMjGY2SnTuHXrJYxpNJ8uGHyfffDz1luayvJ8ePz37v5Mnk9m0BmLeNjWQySX7+eegli2U8GiXjcbJ799BTlsuffyYrK7Pf++ij5JNP/Fn2vF29uhlW/s4bABQTACgmAFBMAKCYAEAxAYBiAgDFBACKCQAUEwAoJgBQTACgmABAMQGAYgIAxQQAigkAFBMAKCYAUEwAoJgAQDEBgGICAMUEAIoJABQTACgmAFBMAKCYAEAxAYBiAgDFBACKCQAUEwAoJgBQTACgmABAMQGAYgIAxQQAigkAFBMAKCYAUEwAoJgAQDEBgGICAMUEAIoJABQTACgmAFBsfP9+8ssvyenTQ09ZLs+fJ0+fDr0C3mx87Fjy+efJ++8PPWW5bGwkk8ns9+7cSX79Nbl2bf6bmq2tJXv3znbn5cvN8+23/8+mIa2vJ0+eJOPJJLl0aeg5vHLhQvLbb7P/svJm6+vJzp2z39u7N/nmm/nvGdpolKysJCvT6XQ69BhgGB4BoZgAQDEBgGICAMUEAIoJABQTACgmAFBMAKCYAEAxAYBiAgDFBACKCQAUEwAoJgBQTACgmABAMQGAYgIAxQQAigkAFBMAKCYAUEwAoJgAQDEBgGICAMUEAIoJABQTACgmAFBMAKCYAEAxAYBiAgDFBACKCQAUEwAoJgBQTACgmABAMQGAYgIAxQQAigkAFBMAKCYAUEwAoJgAQDEBgGICAMUEAIoJABQTACgmAFBMAKCYAEAxAYBiAgDFBACKCQAUEwAoJgBQTACgmABAsb8A4reLQ35ciP4AAAAASUVORK5CYII="/>
+    <VariableText>
+        <Start Value="0"/>
+        <End Value="999"/>
+        <Current Value="0"/>
+        <Increment Value="1"/>
+        <AutoAdvance Value="0"/>
+    </VariableText>
+    <UIPrefs>
+        <Optimize_ByLayer Value="0"/>
+        <Optimize_ByGroup Value="-1"/>
+        <Optimize_ByPriority Value="1"/>
+        <Optimize_WhichDirection Value="0"/>
+        <Optimize_InnerToOuter Value="1"/>
+        <Optimize_ByDirection Value="0"/>
+        <Optimize_ReduceTravel Value="1"/>
+        <Optimize_HideBacklash Value="0"/>
+        <Optimize_ReduceDirChanges Value="0"/>
+        <Optimize_ChooseCorners Value="0"/>
+        <Optimize_AllowReverse Value="1"/>
+        <Optimize_RemoveOverlaps Value="0"/>
+        <Optimize_OptimalEntryPoint Value="0"/>
+        <Optimize_OverlapDist Value="0.025"/>
+    </UIPrefs>
+    <CutSetting type="Cut">
+        <index Value="1"/>
+        <name Value="C01"/>
+        <maxPower Value="100"/>
+        <maxPower2 Value="20"/>
+        <speed Value="5"/>
+        <runBlower Value="0"/>
+        <numPasses Value="3"/>
+        <priority Value="0"/>
+        <tabCount Value="1"/>
+        <tabCountMax Value="1"/>
+    </CutSetting>
+    <Shape Type="Rect" CutIndex="1" W="86.5" H="54.500004" Cr="0">
+        <XForm>1 0 0 1 54.805748 104.3681</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="1" W="86.5" H="54.500004" Cr="0">
+        <XForm>1 0 0 1 53.021324 39.346771</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="1" W="86.5" H="54.500004" Cr="0">
+        <XForm>1 0 0 1 154.89221 103.47404</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="1" W="86.5" H="54.500004" Cr="0">
+        <XForm>1 0 0 1 153.10779 38.452713</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="1" W="86.5" H="54.500004" Cr="0">
+        <XForm>-4.3711388e-08 -1 1 -4.3711388e-08 237 54</XForm>
+    </Shape>
+    <Notes ShowOnLoad="0" Notes=""/>
+</LightBurnProject>
