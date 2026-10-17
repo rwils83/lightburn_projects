@@ -15,45 +15,77 @@
 # Notes:
 #  - Windows Git Bash: pass paths as D:/... (not /d/...). The script forces
 #    MSYS_NO_PATHCONV so leading slashes in the upload form are not mangled.
-#  - Only --run fires the laser. Be at the machine before using it.
+#  - Only --run fires the laser, and ONLY after the upload is verified byte-for-byte.
+#    A failed/short upload aborts without firing. Be at the machine before using --run.
 
 set -euo pipefail
 export MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*'
 IP="${LASER_IP:-192.168.1.119}"
 BASE="http://$IP"
 
-cmd() { curl -s -m 15 -G "$BASE/command" --data-urlencode "plain=$1"; }
+# All server URLs are built from the fixed $BASE; pass them via --url so a value
+# can never be parsed as a curl option.
+cmd() { curl -s -m 15 --url "$BASE/command" -G --data-urlencode "plain=$1"; }
 
 case "${1:-}" in
-  --list)   cmd '[ESP210]list'; echo; curl -s -m 15 "$BASE/upload?path=/" ; echo; exit 0 ;;
+  --list)   curl -s -m 20 --url "$BASE/upload?path=/"; echo; exit 0 ;;
   --status) cmd '?'; echo; exit 0 ;;
-  --pause)  cmd '!'; echo "feed-hold sent"; exit 0 ;;
-  --resume) cmd '~'; echo "resume sent"; exit 0 ;;
-  --stop)   printf '\x18' | curl -s -m 15 -G "$BASE/command" --data-urlencode "plain=$(printf '\x18')" >/dev/null || true
-            echo "soft-reset (abort) sent"; exit 0 ;;
+  --pause)  cmd '!' >/dev/null; echo "feed-hold sent"; exit 0 ;;
+  --resume) cmd '~' >/dev/null; echo "resume sent"; exit 0 ;;
+  --stop)   cmd "$(printf '\x18')" >/dev/null || true; echo "soft-reset (abort) sent"; exit 0 ;;
   ""|-h|--help) grep '^#' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
 esac
 
-FILE="$1"; RUN="${2:-}"
+FILE="$1"
+RUN="${2:-}"
+if [ -n "$RUN" ] && [ "$RUN" != "--run" ]; then
+  echo "ERROR: unknown second argument '$RUN' (did you mean --run?)"; exit 2
+fi
 [ -f "$FILE" ] || { echo "ERROR: file not found: $FILE (use D:/... on Windows)"; exit 1; }
 
-NAME="$(basename "$FILE")"
+NAME="$(basename -- "$FILE")"
+# Restrict the SD filename to a safe set so it can't carry control chars or odd
+# bytes into the upload form / run command.
+case "$NAME" in
+  -*|*/*) echo "ERROR: refusing unsafe filename: $NAME"; exit 2 ;;
+esac
+if printf '%s' "$NAME" | LC_ALL=C grep -q '[^A-Za-z0-9._ -]'; then
+  echo "ERROR: filename has characters outside [A-Za-z0-9._ -]: $NAME"; exit 2
+fi
 FULL="/$NAME"
 SZ=$(wc -c <"$FILE" | tr -d ' ')
 
 echo "Uploading $NAME ($SZ bytes) to $IP ..."
-curl -s -m 300 --http1.1 -H 'Expect:' "$BASE/upload?path=/" \
+curl -s -m 300 --http1.1 -H 'Expect:' --url "$BASE/upload?path=/" \
   -F "path=/" -F "${FULL}=${SZ}" \
   -F "myfile[]=@${FILE};filename=${FULL};type=application/octet-stream" \
   >/dev/null
 
-# Verify via the SD directory listing (authoritative; /SD/<name> can read 0 right after a write)
-KB=$(curl -s -m 20 "$BASE/upload?path=/" \
-  | tr ',' '\n' | grep -F "\"$NAME\"" -A1 | grep -oE '"size":"[^"]*"' | head -1 | sed 's/"size":"//;s/"//')
-if [ -n "$KB" ]; then
-  echo "OK - on SD as '$NAME' (size reported: $KB)"
+# --- integrity gate: the SD listing must report this file at the SOURCE size ---
+# Parse "size":"<n> <unit>" for this name and convert to bytes.
+report=$(curl -s -m 20 --url "$BASE/upload?path=/" \
+  | tr ',' '\n' | grep -F "\"$NAME\"" -A1 | grep -oE '"size":"[^"]*"' | head -1 \
+  | sed 's/"size":"//;s/"$//')
+
+verified=0
+if [ -n "$report" ]; then
+  got=$(awk -v s="$report" 'BEGIN{
+    n=s; u=s; sub(/ .*/,"",n); sub(/^[0-9.]+ ?/,"",u);
+    m=1; if(u=="KB")m=1024; else if(u=="MB")m=1048576; else if(u=="GB")m=1073741824;
+    printf "%.0f", n*m }')
+  # tolerance: reported size is rounded to 2 decimals in KB/MB, so allow ~0.6%.
+  tol=$(( SZ/160 + 64 ))
+  diff=$(( got>SZ ? got-SZ : SZ-got ))
+  if [ "$diff" -le "$tol" ]; then verified=1; fi
+  echo "SD reports: $report (~$got bytes); source $SZ bytes; diff $diff (tol $tol)"
+fi
+
+if [ "$verified" = 1 ]; then
+  echo "VERIFIED - '$NAME' is on the SD at the correct size."
 else
-  echo "WARNING: could not confirm '$NAME' in SD listing - check manually with --list"
+  echo "FAILED VERIFICATION - '$NAME' is missing or the wrong size on the SD."
+  echo "Not starting anything. Re-run the upload; do NOT run this file until it verifies."
+  exit 3
 fi
 
 if [ "$RUN" = "--run" ]; then
